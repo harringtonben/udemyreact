@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import * as ReactDOM from "react-dom";
 
-//JSX - Javascript XML
-var template = (
+let app = {
+    title: 'Indecision App',
+    subtitle: 'this is an app about indecision, so decide'
+};
+
+let template = (
     <div>
-        <h1>This is jsx from app.js</h1>
-        <p>this is some info</p>
+        <h1>{app.title}</h1>
+        <p>{app.subtitle}</p>
         <ol>
           <li>Item 1</li>
           <li>Item 2</li>
@@ -14,21 +18,20 @@ var template = (
     </div>
 );
 
-var template2 = (
+let user = {
+    name: 'Ben Harrington',
+    age: 28,
+    location: 'Nashville,TN'
+};
+
+let template2 = (
     <div>
-      <h1>Ben Harrington</h1>
-      <p>age: 28</p>
-      <p>location: Nashville</p>
+      <h1>{user.name}</h1>
+      <p>age: {user.age}</p>
+      <p>location: {user.location}</p>
     </div>
 );
 
-// Create a template 2 variable JSX expression
-// div
-//  h1 -> Ben Harrington
-//  p -> age: 28
-//  p -> location: Nashville
-//  Render template 2 instead of template
-
-ReactDOM.render(template2, document.getElementById('root'));
+ReactDOM.render(template, document.getElementById('root'));
 
 //export default template;
