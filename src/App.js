@@ -5,7 +5,6 @@ import * as ReactDOM from "react-dom";
 //only render the subtitle and p tag around subtitle if subtitle exists -- logical &&
 // render new p tag -- if options.length > 0 "here are your options" "no options" --ternary
 
-
 let app = {
     title: 'Indecision App',
     subtitle: 'this is an app about indecision, so decide',
