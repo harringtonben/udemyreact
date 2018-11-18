@@ -30,7 +30,11 @@ const removeAllOptions = () => {
 
 const appRoot = document.getElementById('root');
 
-const numbers = [55, 101, 1000];
+const makeDecision = () => {
+    const randomNumber = Math.floor(Math.random() * app.options.length);
+    const selectedOption = app.options[randomNumber];
+    alert(selectedOption);
+};
 
 const renderDom = () => {
     const template = (
@@ -38,12 +42,11 @@ const renderDom = () => {
             <h1>{app.title}</h1>
             {app.subtitle && <p>{app.subtitle}</p>}
             <p>{app.options.length > 0 ? 'Here are your options:' : 'No options'}</p>
+            <button disabled={app.options.length === 0} onClick={makeDecision}>What should I do?</button>
             <button onClick={removeAllOptions}>Remove All</button>
             <ol>
                 {
-                    app.options.map((option) => {
-                        return <li key={option}>{option}</li>
-                    })
+                    app.options.map((option) => <li key={option}>{option}</li>)
                 }
             </ol>
             <form onSubmit={onFormSubmit}>
