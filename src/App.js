@@ -7,7 +7,7 @@ const appRoot = document.getElementById('root');
 let detailsVisibility = false;
 
 const changeDetailsVisibility = () => {
-    (detailsVisibility === true) ? detailsVisibility = false : detailsVisibility = true;
+    detailsVisibility ? detailsVisibility = false : detailsVisibility = true;
     renderDom();
 };
 
@@ -15,8 +15,7 @@ const renderDom = () => {
     const template = (
         <div>
             <h1>Visibility Toggle</h1>
-            <button hidden={detailsVisibility === true} onClick={changeDetailsVisibility}>Show details</button>
-            <button hidden={detailsVisibility === false} onClick={changeDetailsVisibility}>Hide details</button>
+            <button onClick={changeDetailsVisibility}>{detailsVisibility ? 'Hide details' : 'Show details'}</button>
             <p hidden={detailsVisibility === false}>This is the super secret stuff that not everyone is allowed to see!!</p>
         </div>
     );
