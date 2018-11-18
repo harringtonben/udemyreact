@@ -7,7 +7,7 @@ const appRoot = document.getElementById('root');
 let detailsVisibility = false;
 
 const changeDetailsVisibility = () => {
-    detailsVisibility ? detailsVisibility = false : detailsVisibility = true;
+    detailsVisibility = !detailsVisibility;
     renderDom();
 };
 
@@ -16,7 +16,10 @@ const renderDom = () => {
         <div>
             <h1>Visibility Toggle</h1>
             <button onClick={changeDetailsVisibility}>{detailsVisibility ? 'Hide details' : 'Show details'}</button>
-            <p hidden={detailsVisibility === false}>This is the super secret stuff that not everyone is allowed to see!!</p>
+            {detailsVisibility && (
+                <p>This is the super secret stuff that not everyone is allowed to see!!</p>
+            )}
+
         </div>
     );
 
