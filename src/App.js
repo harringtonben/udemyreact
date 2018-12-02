@@ -4,26 +4,64 @@ import * as ReactDOM from "react-dom";
 
 const appRoot = document.getElementById('root');
 
-let detailsVisibility = false;
+class Person {
+    constructor(name = 'Anonymous', age = 0) {
+        this.name = name;
+        this.age = age;
+    }
+    getGreeting() {
+        return `Hi. I am ${this.name}!`;
+    }
+    getDescription() {
+        return `${this.name} is ${this.age} year(s) old.`
+    }
+}
 
-const changeDetailsVisibility = () => {
-    detailsVisibility = !detailsVisibility;
-    renderDom();
-};
+class Student extends Person {
+    constructor(name, age, major) {
+        super(name, age);
+        this.major = major;
+    }
+    hasMajor() {
+        return !!this.major;
+    }
+    getDesciption() {
+        let description = super.getDescription();
+
+        if (this.hasMajor()) {
+            description += ` Their major is ${this.major}`;
+        }
+
+        return description;
+    }
+}
+
+class Traveller extends Person {
+    constructor(name, age, homeLocation) {
+        super(name, age);
+        this.homeLocation = homeLocation;
+    }
+    getGreeting() {
+        let greeting = super.getGreeting();
+
+        if (this.homeLocation) {
+            greeting += ` I'm visiting from ${this.homeLocation}`;
+        }
+
+        return greeting;
+    }
+}
+
+const me = new Traveller('Ben Harrington', 28, 'Nashville');
+const other = new Traveller();
+
+console.log(me);
+console.log(me.getGreeting());
+console.log(other);
+console.log(other.getGreeting());
 
 const renderDom = () => {
-    const template = (
-        <div>
-            <h1>Visibility Toggle</h1>
-            <button onClick={changeDetailsVisibility}>{detailsVisibility ? 'Hide details' : 'Show details'}</button>
-            {detailsVisibility && (
-                <p>This is the super secret stuff that not everyone is allowed to see!!</p>
-            )}
-
-        </div>
-    );
-
-    ReactDOM.render(template, appRoot);
+    //ReactDOM.render(appRoot);
 };
 
 renderDom();
