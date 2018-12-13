@@ -4,64 +4,75 @@ import * as ReactDOM from "react-dom";
 
 const appRoot = document.getElementById('root');
 
-class Person {
-    constructor(name = 'Anonymous', age = 0) {
-        this.name = name;
-        this.age = age;
-    }
-    getGreeting() {
-        return `Hi. I am ${this.name}!`;
-    }
-    getDescription() {
-        return `${this.name} is ${this.age} year(s) old.`
-    }
-}
-
-class Student extends Person {
-    constructor(name, age, major) {
-        super(name, age);
-        this.major = major;
-    }
-    hasMajor() {
-        return !!this.major;
-    }
-    getDesciption() {
-        let description = super.getDescription();
-
-        if (this.hasMajor()) {
-            description += ` Their major is ${this.major}`;
-        }
-
-        return description;
+class IndecisionApp extends React.Component {
+    render() {
+        const title = "Indecision";
+        const subTitle = "Put your life in the hands of a computer";
+        const options = ["Thing1", "Thing2", "Thing4"];
+        return (
+            <div>
+                <Header title={title} subTitle={subTitle}/>
+                <Action />
+                <Options options={options}/>
+                <AddOption />
+            </div>
+        );
     }
 }
 
-class Traveller extends Person {
-    constructor(name, age, homeLocation) {
-        super(name, age);
-        this.homeLocation = homeLocation;
-    }
-    getGreeting() {
-        let greeting = super.getGreeting();
-
-        if (this.homeLocation) {
-            greeting += ` I'm visiting from ${this.homeLocation}`;
-        }
-
-        return greeting;
+class Header extends React.Component{
+    render() {
+        return (
+            <div>
+                <h1>{this.props.title}</h1>
+                <h2>{this.props.subTitle}</h2>
+            </div>
+        );
     }
 }
 
-const me = new Traveller('Ben Harrington', 28, 'Nashville');
-const other = new Traveller();
+class Action extends React.Component {
+    render() {
+        return (
+            <div>
+                <button>What should I do?</button>
+            </div>
+        );
+    }
+}
 
-console.log(me);
-console.log(me.getGreeting());
-console.log(other);
-console.log(other.getGreeting());
+class Options extends React.Component {
+    render() {
+        return (
+            <div>
+                {this.props.options.map((option) => <Option key={option} optionText={option} />)}
+            </div>
+        );
+    }
+}
+
+class AddOption extends React.Component {
+    render() {
+        return (
+            <div>
+                AddOption component here
+            </div>
+        );
+    }
+}
+
+class Option extends React.Component {
+    render() {
+        return (
+          <div>
+              Option: {this.props.optionText}
+          </div>
+        );
+    }
+}
 
 const renderDom = () => {
-    //ReactDOM.render(appRoot);
+    ReactDOM.render(<IndecisionApp />, appRoot);
 };
 
 renderDom();
